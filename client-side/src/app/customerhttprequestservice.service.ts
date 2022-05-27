@@ -47,7 +47,7 @@ export class CustomerhttprequestService {
 
   // Getting Customer details.
   getCustomerDetails() {
-    return this.http.get<Customer>(this.URL);
+    return this.http.get(this.URL);
   }
 
   // Getting all the users of a particular Customer.

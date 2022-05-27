@@ -10,7 +10,7 @@ import { map, Observable, throwError } from 'rxjs';
 export class HTTPServiceRequest {
     data: any = [];
     user: any = [];
-   
+
     data1: any = []
     idInt: number | undefined;
 
@@ -40,21 +40,19 @@ export class HTTPServiceRequest {
 
     // Getting all Users.
     getUsers() {
-        return this.http.get<User>(this.url + 'users');
+        return this.http.get(this.url + 'users');
     }
-
-    
 
     // Deleting user from Usertable using Id.
     onDelete(id: number) {
-        return this.http.delete<User>(this.url + 'users/' + `${id}`);
+        return this.http.delete(this.url + 'users/' + `${id}`);
     }
 
     // Updating Particular user Details.
     updateUser(user: User) {
         const url = 'http://localhost:3000/users/';
 
-        return this.http.put<User>(url + user.id, user, this.httpOptions);
+        return this.http.put(url + user.id, user, this.httpOptions);
     }
 
     // Adding new user in the usertable.

@@ -1,4 +1,9 @@
-import Role from './enum'
+import Role from './enum';
+export class role {
+    name!: string
+    key!: string
+    description!: string
+}
 export class User {
     customerid!: number
     id!: number
@@ -18,3 +23,5 @@ export class Customer {
     website!: string
     address!: string
 }
+export const URL = 'http://localhost:3000/customers';
+export const url = 'http://localhost:3000/';

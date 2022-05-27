@@ -3,7 +3,7 @@
     <form [formGroup]="editForm" (ngSubmit)="onSubmit()" autocomplete="off">
         <div class="formGroup">
             <label for="customerid">Customer ID</label>
-            <input class="form-control" id="customerid" formControlName="customerid">
+            <input class="form-control" [ngModel]="customeri" id="customerid" formControlName="customerid">
 
         </div>
         <div class="formGroup">

@@ -17,6 +17,7 @@ export class EdituserComponent implements OnInit {
   id!: string;
   data: any = [];
   role: any = [];
+  customeri = 2;
 
   editForm!: FormGroup;
   customerList: any = [];
