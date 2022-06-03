@@ -11,6 +11,10 @@ For BackEnd-Side
 
 Implemented the previous API application(NodeJS and Postgres) by replacing it with Loopback 4 keeping the functionalities same.
 
+Test Cases
+Added unit test cases for  User,Customer and Role controller in loopback application.
+Added unit test cases for Services in angular application
+
 HOW TO RUN
 
 1.For BackEnd-Side
