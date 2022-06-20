@@ -12,7 +12,7 @@ import { CustomerhttprequestService } from '../customerhttprequestservice.servic
 })
 export class AddComponent implements OnInit {
   users: any = [];
-
+  customerDataById: any = [];
   id!: number;
   customerList: any = [];
   roleList: { name: string; key: string }[] = [];
@@ -35,7 +35,6 @@ export class AddComponent implements OnInit {
     email: ['', [Validators.required]],
     phone: ['', [Validators.required, Validators.pattern("[0-9]{10}")]],
     roleName: ['', [Validators.required]],
-    customerName: ['', [Validators.required]],
     address: ['', [Validators.required]],
 
   })
@@ -51,9 +50,30 @@ export class AddComponent implements OnInit {
   }
   onSubmit() {
 
-    this.httpRequestService.createUser(this.userForm.value).subscribe(response => {
-      this.router.navigate(['']);
-      this.userForm.reset();
+    const form = this.userForm.value;
+    this.httpRequestService.getCustomerById(form.customerid).subscribe(response => {
+      this.customerDataById = Object.values(response);
+
+      const customerID = Number(form.customerid);
+      const id = Number(form.id);
+      let myBody = {
+        "customerid": customerID,
+        "id": id,
+        "firstname": form.firstname,
+        "middlename": form.middlename,
+        "lastname": form.lastname,
+        "email": form.email,
+        "phone": form.phone,
+        "roleName": form.roleName,
+        "customerName": this.customerDataById[1],
+        "address": form.address
+      }
+      console.log(JSON.stringify(myBody))
+
+      this.httpRequestService.createUser(myBody).subscribe((response) => {
+        this.router.navigate(['/']);
+      }
+      )
     })
   }
 

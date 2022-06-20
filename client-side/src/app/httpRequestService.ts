@@ -57,22 +57,10 @@ export class HTTPServiceRequest {
 
     // Adding new user in the usertable.
     createUser(data: User) {
-        const myBody = {
-            customerid: Number(data.customerid),
-            id: Number(data.id),
-            firstname: data.firstname,
-            middlename: data.middlename,
-            lastname: data.lastname,
-            email: data.email,
-            phone: data.phone,
-            roleName: data.roleName,
-            customerName: data.customerName,
-            address: data.address
-        }
 
         const url = 'http://localhost:3000/users';
         return this.http
-            .post(url, myBody, this.httpOptions)
+            .post(url, data, this.httpOptions)
             .pipe(catchError(this.errorHandler));
 
     }
@@ -100,5 +88,9 @@ export class HTTPServiceRequest {
         }
         console.log(errorMessage);
         return throwError(errorMessage);
+    }
+    getCustomerById(id: number) {
+        const url = 'http://localhost:3000/customers/';
+        return this.http.get(url + id);
     }
 }

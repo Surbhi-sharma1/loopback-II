@@ -1,14 +1,19 @@
+<br>
+<br>
 <h2>EDIT USER</h2>
 <div class="container-lg">
     <form [formGroup]="editForm" (ngSubmit)="onSubmit()" autocomplete="off">
         <div class="formGroup">
             <label for="customerid">Customer ID</label>
-            <input class="form-control" [ngModel]="customeri" id="customerid" formControlName="customerid">
-
+            <select formControlName="customerid">
+                <option *ngFor="let customer of customerList" [value]="customer.customerid">
+                    {{ customer.name }}
+                </option>
+            </select>
         </div>
         <div class="formGroup">
             <label for="id">Employee ID</label>
-            <input class="form-control" id="id" formControlName="id" [readonly]="!editable">
+            <input class="form-control" id="id" formControlName="id">
 
         </div>
 
@@ -27,9 +32,9 @@
         </div>
 
         <div class="formGroup">
-            <label for="MiddleName">Middle Name</label>
+            <label for="Middlename">Middle Name</label>
             <input class="form-control" id="middlename" formControlName="middlename">
-            <div *ngIf="editForm.controls['middlename'].invalid &&(editForm.controls['middlename'].dirty|| editForm.controls['middleName'].touched)"
+            <div *ngIf="editForm.controls['middlename'].invalid &&(editForm.controls['middlename'].dirty|| editForm.controls['middlename'].touched)"
                 class="alert">
 
                 <div *ngIf="editForm.controls['middlename'].errors?.['minlength']">
@@ -87,17 +92,7 @@
                     </div>
                 </div>
             </div>
-            <div class="formGroup">
-                <label for="customerName">Customer Name</label>
-                <input class="form-control" id="customerName" formControlName="customerName">
-
-                <div *ngIf="editForm.controls['customerName'].invalid && (editForm.controls['customerName'].dirty || editForm.controls['customerName'].touched)"
-                    class="alert alert-danger">
-                    <div *ngIf="editForm.controls['CustomerName'].errors?.['required']">
-                        *Customer is required!
-                    </div>
-                </div>
-            </div>
+       
 
             <div class="formGroup">
                 <label for="Address">Address </label>
